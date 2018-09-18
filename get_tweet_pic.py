@@ -1,6 +1,7 @@
 import tweepy
 import json
 import urllib.request
+import sys
 
 consumer_key = "dKvsn8YRgSICPa9PWbLL0VLz0"
 consumer_secret = "moF5isCVG3CkKGc9GYUwfWMHaVAPYlSime3nd2EXLRYt0teMTp"
@@ -43,5 +44,5 @@ def get_tweet_pic(cus_id):
 
     print(len(all_tweets))
 
-cus_id = 'tim_cook'
+cus_id = sys.argv
 get_tweet_pic(cus_id)

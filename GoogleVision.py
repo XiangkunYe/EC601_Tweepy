@@ -8,41 +8,43 @@ from PIL import Image, ImageDraw, ImageFont
 
 #os.popen('export GOOGLE_APPLICATION_CREDENTIALS="/Users/yxk/Documents/Python/601/GoogleVisionKey.json"')
 
-picname = list(os.popen('ls'))
+def analypic():
 
-for pic in picname:
+    picname = list(os.popen('ls'))
 
-    if '.jpg' in pic:
+    for pic in picname:
 
-        pict = pic.strip()
-        # Instantiates a client
-        client = vision.ImageAnnotatorClient()
+        if '.jpg' in pic:
 
-        # The name of the image file to annotate
-        file_name = os.path.join(
-            os.path.dirname(__file__),
-            pict)
+            pict = pic.strip()
+            # Instantiates a client
+            client = vision.ImageAnnotatorClient()
 
-        # Loads the image into memory
-        with io.open(file_name, 'rb') as image_file:
-            content = image_file.read()
+            # The name of the image file to annotate
+            file_name = os.path.join(
+                os.path.dirname(__file__),
+                pict)
 
-        image = types.Image(content=content)
+            # Loads the image into memory
+            with io.open(file_name, 'rb') as image_file:
+                content = image_file.read()
 
-        # Performs label detection on the image file
-        response = client.label_detection(image=image)
-        labels = response.label_annotations
+            image = types.Image(content=content)
 
-        im = Image.open(file_name)
-        draw = ImageDraw.Draw(im)
-        labeldes = []
+            # Performs label detection on the image file
+            response = client.label_detection(image=image)
+            labels = response.label_annotations
 
-        for label in labels:
-            labeldes.append(label.description)
+            im = Image.open(file_name)
+            draw = ImageDraw.Draw(im)
+            labeldes = []
 
-        labeldcp = ','.join(labeldes)
-        myfont = ImageFont.truetype("Chalkduster.ttf", 35)
-        fillcolor = 'red'
+            for label in labels:
+                labeldes.append(label.description+'\n')
 
-        draw.text((50, 40), labeldcp, font=myfont, fill=fillcolor)
-        im.save(file_name, 'JPEG')
+            labeldcp = ''.join(labeldes)
+            myfont = ImageFont.truetype("Chalkduster.ttf", 35)
+            fillcolor = 'red'
+
+            draw.text((50, 40), labeldcp, font=myfont, fill=fillcolor)
+            im.save(file_name, 'JPEG')
