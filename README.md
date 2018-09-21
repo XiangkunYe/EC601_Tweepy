@@ -14,4 +14,8 @@ export GOOGLE_APPLICATION_CREDENTIALS="/Users/yxk/Documents/Python/601/GoogleVis
 
 first, change it into your own directory.
 
-Have fun with them! If you find any bugs`, please tell me, if you are professor or TA, please give me a good grade!
+Have fun with them! If you find any bug, please tell me, if you are professor or TA, please give me a good grade!
+
+(Please forgive me if I didn't make it perfect since I'm working really hard preparing for my Facebook interview.)
+
+(But I also believe them will work well in most cases!)
