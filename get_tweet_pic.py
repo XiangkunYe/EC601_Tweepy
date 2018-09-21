@@ -21,7 +21,11 @@ def get_tweet_pic(cus_id):
 
     while len(new_tweets) > 0:
 
-        new_tweets = api.user_timeline(id = cus_id, count=200, max_id=oldest)
+        try:
+            new_tweets = api.user_timeline(id = cus_id, count=200, max_id=oldest)
+        except:
+            print('Opps, you might enter a wrong id, please try again.')
+
         all_tweets.extend(new_tweets)
         oldest = all_tweets[-1].id - 1
 
@@ -44,5 +48,5 @@ def get_tweet_pic(cus_id):
 
     print(len(all_tweets))
 
-cus_id = sys.argv
+cus_id = sys.argv[1]
 get_tweet_pic(cus_id)
