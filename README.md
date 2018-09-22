@@ -1,21 +1,14 @@
 # EC601_Tweepy
 
-Hello! I'm Xiangkun Ye and I write this tweepy project for EC601 Miniproject1.
+##Hello! I'm Xiangkun Ye and I write this tweepy project for EC601 Miniproject1.
 
-As you can see, there're three files in the repository.
+##You can use main.py to finish the whole download-analysis-convert process just by inputing the id and tweet number.
 
-You can use get_tweet_pic.py directly and input the id of that guy you want to download picture from. Or use it as API, import it and use the get_tweet_pic fiction.
-
-For pic2mp4.py, it could be use to invert jpg to mp4.
-
-About GoogleVision.py, you can use it to analyze all jpg in your current working directory, or use it as API. Be care that you may need to use 
-
-export GOOGLE_APPLICATION_CREDENTIALS="/Users/yxk/Documents/Python/601/GoogleVisionKey.json" 
-
-first, change it into your own directory.
-
-Have fun with them! If you find any bug, please tell me, if you are professor or TA, please give me a good grade!
-
-(Please forgive me if I didn't make it perfect since I'm working really hard preparing for my Facebook interview.)
-
-(But I also believe them will work well in most cases!)
+##But remember to:
+  install tweepy, ffmpeg and PIL
+  change the consumer_key, consumer_secret, access_key, access_secret, GOOGLE_APPLICATION_CREDENTIALS into your own
+  
+##If you use it as a normal .py file, it will run automatically, if you want to use it as API, there're three functions:
+  get_tweet_pic, analypic, pic2mp4
+  
+##Heve fun with them! If there's any bug, please tell me, if you're professor or TA, please give me a good grade!
