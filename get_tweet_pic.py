@@ -3,10 +3,10 @@ import json
 import urllib.request
 import sys
 
-consumer_key = "dKvsn8YRgSICPa9PWbLL0VLz0"
-consumer_secret = "moF5isCVG3CkKGc9GYUwfWMHaVAPYlSime3nd2EXLRYt0teMTp"
-access_key = "804211084634689536-RJovRQ2u49VgM9U8xfesouPpiJmGG3O"
-access_secret = "qIBxB527HcS5kPchwc7QS2s7eR8zVoM4zVwSZRkXR3HXF"
+consumer_key = ""
+consumer_secret = ""
+access_key = ""
+access_secret = ""
 
 def get_tweet_pic(cus_id):
 
