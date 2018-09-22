@@ -6,7 +6,7 @@ You can use main.py to finish the whole download-analysis-convert process just b
 
 ## But remember to:
 
-  install tweepy, ffmpeg and PIL.
+  install tweepy, ffmpeg and Pillow.
   
   change the consumer_key/_secret, access_key/_secret, GOOGLE_APPLICATION_CREDENTIALS into your own.
   ##
