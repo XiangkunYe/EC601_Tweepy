@@ -4,7 +4,7 @@ Hello! I'm Xiangkun Ye and I write this tweepy project for EC601 Miniproject1.
 
 You can use main.py to finish the whole download-analysis-convert process just by inputing the id and tweet number.
 
-But remember to:
+## But remember to:
 
   install tweepy, ffmpeg and PIL.
   
