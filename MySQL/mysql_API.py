@@ -117,8 +117,8 @@ if __name__ == '__main__':
     #createdatabase()
     #createtable()
 
-    #print('Autofilling: ')
-    #autofill()
+    print('Autofilling: ')
+    autofill()
     print('User who searched Tim Cook before: ', search('tim_cook'))
     print('Averange number of images per feed: ', avgnum())
     print('Most popular descriptors: ', most_pop())
