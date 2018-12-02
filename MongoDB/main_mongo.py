@@ -7,18 +7,24 @@ import io
 from google.cloud import vision
 from google.cloud.vision import types
 from PIL import Image, ImageDraw, ImageFont
+import pymongo
 
-consumer_key = 'input your consumer key'
-consumer_secret = 'input your consumer secret'
-access_key = 'input your access token'
-access_secret = 'input your access token secret'
+consumer_key = "dKvsn8YRgSICPa9PWbLL0VLz0"
+consumer_secret = "moF5isCVG3CkKGc9GYUwfWMHaVAPYlSime3nd2EXLRYt0teMTp"
+access_key = "804211084634689536-RJovRQ2u49VgM9U8xfesouPpiJmGG3O"
+access_secret = "qIBxB527HcS5kPchwc7QS2s7eR8zVoM4zVwSZRkXR3HXF"
 
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="input the path you save the google vision key json file"
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/Users/yxk/Documents/601/Miniproject1/GoogleVisionKey.json"
 
 
 def get_tweet_pic(cus_id, picnum):
 
-    folder = os.getcwd() + "/result"
+    curdir = os.getcwd()
+    if 'result' not in curdir:
+        curdir += "/result"
+        folder = curdir + '/' + cus_id
+    else:
+        folder = curdir + '/' + cus_id
 
     if not os.path.exists(folder):
         os.makedirs(folder)
@@ -62,9 +68,14 @@ def get_tweet_pic(cus_id, picnum):
         picnum = "%04d" % n
         urllib.request.urlretrieve(url, f"jpg{picnum}.jpg")
 
+    os.chdir(curdir + '/')
+    return len(tweets_images)
 
-def analypic():
 
+def analypic(cus_id):
+
+    curdir = os.getcwd()
+    os.chdir(curdir + '/' + cus_id + '/')
     picname = list(os.popen('ls'))
 
     for pic in picname:
@@ -75,8 +86,7 @@ def analypic():
             client = vision.ImageAnnotatorClient()
 
             file_name = os.path.join(
-                os.path.dirname(__file__),
-                pict)
+                os.path.dirname(__file__), pict)
 
             with io.open(file_name, 'rb') as image_file:
                 content = image_file.read()
@@ -100,20 +110,31 @@ def analypic():
             draw.text((50, 40), labeldcp, font=myfont, fill=fillcolor)
             im.save(file_name, 'JPEG')
 
+    os.chdir(curdir + '/')
 
-def pic2mp4():
-    os.popen(
-        'ffmpeg -framerate 24 -r 1 -i jpg%04d.jpg -t 600 -vf scale=1280:720 output.mp4')
 
+def pic2mp4(cus_id):
+
+    curdir = os.getcwd()
+    os.chdir(curdir + '/' + cus_id + '/')
+
+    os.popen('ffmpeg -framerate 24 -r 1 -i jpg%04d.jpg -t 600 -vf scale=1280:720 output.mp4')
+
+    os.chdir(curdir + '/')
 
 def main():
-    cus_id = input(
-        'Please input the ID of twitter account you want to search: ')
+
+    myclient = pymongo.MongoClient("mongodb://localhost:27017/")
+    mydb = myclient["tweepy"]
+    mycol = mydb["users"]
+
+    user_name = input('Please input your user name: ')
+    cus_id = input('Please input the ID of twitter account you want to search: ')
     picnum = input('Please input the number of tweets you want to search: ')
     print('Image download start!')
 
     try:
-        get_tweet_pic(cus_id, picnum)
+        imgnum = get_tweet_pic(cus_id, picnum)
     except BaseException:
         print('Opps, you might enter a wrong id or invaild number, please try again.')
         main()
@@ -122,7 +143,7 @@ def main():
     print('Image analysis start!')
 
     try:
-        analypic()
+        analypic(cus_id)
     except BaseException:
         print("Opps, maybe you forget to export the directory of GoogleVision's key? Please try again.")
         sys.exit()
@@ -130,10 +151,12 @@ def main():
     print('Image analysis finish!')
 
     try:
-        pic2mp4()
+        pic2mp4(cus_id)
     except BaseException:
         print('Opps, maybe you forget to install ffmpeg? Please try again.')
         sys.exit()
+
+    mycol.insert_one({'username': user_name, 'searchid': cus_id, 'picnum': imgnum})
 
     print('Mission Complete')
     sys.exit()
