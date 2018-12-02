@@ -1,8 +1,8 @@
-# EC601_Tweepy
+# Twitter Image Analysis Using Google Vision
 
 ## For database implementation, please check 'database' branch
 
-Hello! I'm Xiangkun Ye and I write this tweepy project for EC601 Miniproject1.
+Hello! I'm Xiangkun Ye and I write this tweepy project for EC601.
 
 You can use main.py to finish the whole download-analysis-convert process just by inputing the id and tweet number.
 
