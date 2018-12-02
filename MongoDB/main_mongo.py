@@ -18,6 +18,9 @@ os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/Users/yxk/Documents/601/Minipro
 
 
 def get_tweet_pic(cus_id, picnum):
+    '''
+    Download pictures in Twitter according to the id 'cus_id' and number 'picnum'.
+    '''
 
     curdir = os.getcwd()
     if 'result' not in curdir:
@@ -73,6 +76,9 @@ def get_tweet_pic(cus_id, picnum):
 
 
 def analypic(cus_id):
+    '''
+    Use Google Vision API to analyze the picture in folder 'cus_id'.
+    '''
 
     curdir = os.getcwd()
     os.chdir(curdir + '/' + cus_id + '/')
@@ -114,13 +120,18 @@ def analypic(cus_id):
 
 
 def pic2mp4(cus_id):
+    '''
+    Make pictures in folder 'cus_id' into video.
+    '''
 
     curdir = os.getcwd()
     os.chdir(curdir + '/' + cus_id + '/')
 
-    os.popen('ffmpeg -framerate 24 -r 1 -i jpg%04d.jpg -t 600 -vf scale=1280:720 output.mp4')
+    os.popen(
+        'ffmpeg -framerate 24 -r 1 -i jpg%04d.jpg -t 600 -vf scale=1280:720 output.mp4')
 
     os.chdir(curdir + '/')
+
 
 def main():
 
@@ -129,7 +140,8 @@ def main():
     mycol = mydb["users"]
 
     user_name = input('Please input your user name: ')
-    cus_id = input('Please input the ID of twitter account you want to search: ')
+    cus_id = input(
+        'Please input the ID of twitter account you want to search: ')
     picnum = input('Please input the number of tweets you want to search: ')
     print('Image download start!')
 
@@ -156,7 +168,8 @@ def main():
         print('Opps, maybe you forget to install ffmpeg? Please try again.')
         sys.exit()
 
-    mycol.insert_one({'username': user_name, 'searchid': cus_id, 'picnum': imgnum})
+    mycol.insert_one(
+        {'username': user_name, 'searchid': cus_id, 'picnum': imgnum})
 
     print('Mission Complete')
     sys.exit()
