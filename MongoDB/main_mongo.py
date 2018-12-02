@@ -9,12 +9,12 @@ from google.cloud.vision import types
 from PIL import Image, ImageDraw, ImageFont
 import pymongo
 
-consumer_key = "dKvsn8YRgSICPa9PWbLL0VLz0"
-consumer_secret = "moF5isCVG3CkKGc9GYUwfWMHaVAPYlSime3nd2EXLRYt0teMTp"
-access_key = "804211084634689536-RJovRQ2u49VgM9U8xfesouPpiJmGG3O"
-access_secret = "qIBxB527HcS5kPchwc7QS2s7eR8zVoM4zVwSZRkXR3HXF"
+consumer_key = 'input your consumer key'
+consumer_secret = 'input your consumer secret'
+access_key = 'input your access token'
+access_secret = 'input your access token secret'
 
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/Users/yxk/Documents/601/Miniproject1/GoogleVisionKey.json"
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="input the path you save the google vision key json file"
 
 
 def get_tweet_pic(cus_id, picnum):
