@@ -135,7 +135,7 @@ def pic2mp4(cus_id):
 
 def main():
 
-    # Please make sure you create database and table using createdatabase and createtable in mysql_API.py
+    # Please make sure you have created this database and table using createdatabase and createtable in mysql_API.py
     mydb = mysql.connector.connect(
         host = "localhost",
         user = "enter your user name",
