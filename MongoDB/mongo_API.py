@@ -84,6 +84,8 @@ def most_pop():
 
 
 if __name__ == '__main__':
+    
+    print('Autofilling: ')
     autofill()
     print('User who searched Tim Cook before: ', search('tim_cook'))
     print('Averange number of images per feed: ', avgnum())
